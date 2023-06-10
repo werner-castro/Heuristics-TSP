@@ -312,8 +312,8 @@ function rms(data::Data, iter::Int, ativo::Bool)
     custo = resultado.custo
     rota  = resultado.rota
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
     graph(data, resultado, ativo)
+    return resultado
 end
 
 # GRASP - (GREEDY RANDOMIZED ADAPTIVE SEARCH PROCEDURE)
@@ -352,7 +352,7 @@ end
 # enquanto a busca local é usada para melhorar as soluções construídas. O ILS é um método iterativo
 # que, a cada iteração, constrói uma solução gulosa aleatorizada e, em seguida, melhora essa solução
 # por meio de uma busca local. O processo é repetido até que um critério de parada seja satisfeito.
-function ils(data::Data, resultado::Reportproblem, iter::Int)
+function ils(data::Data, resultado::Reportproblem, iter::Int, ativo::Bool)
     
     # definição das etapas do algoritmo ILS para o TSP
     # 1. Inicialização

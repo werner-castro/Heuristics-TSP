@@ -43,7 +43,7 @@ resultado = tsp.model(dados, opt, true)
 
 # ILS
 @time resultado = tsp.clark_wright(dados, false) 
-@time resultado = tsp.ils(dados, resultado)
+@time resultado = tsp.ils(dados, resultado, 100)
 
 # VND
 @time resultado = tsp.clark_wright(dados, true) 
