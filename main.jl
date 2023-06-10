@@ -38,10 +38,17 @@ resultado = tsp.model(dados, opt, true)
 #                          metaheurísticas                           # 
 ######################################################################
 
+# RMS
 @time resultado = tsp.rms(dados, 100, true)
 
-@time resultado = tsp.ils(dados, 100, true)
+# ILS
+@time resultado = tsp.clark_wright(dados, false) 
+@time resultado = tsp.ils(dados, resultado)
 
-@time resultado = tsp.vns(dados, 100, true)
+# VND
+@time resultado = tsp.clark_wright(dados, true) 
+@time resultado = tsp.vnd(dados, resultado, true)
 
-@time resultado = tsp.simulated_annealing(dados, 100, true)
+# SA
+@time resultado = tsp.clark_wright(dados, true) 
+@time resultado = tsp.simulated_annealing(dados, resultado, 100, 100)

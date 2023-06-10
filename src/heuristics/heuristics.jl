@@ -1,5 +1,6 @@
 
-export Dataproblem, Reportproblem, distance, random_route, generate_instance, cost, model, nearest_neighbor, clark_wright, two_opt, rms, angular
+export Dataproblem, Reportproblem, distance, random_route, generate_instance, cost, model
+export nearest_neighbor, clark_wright, two_opt, rms, angular, ils, simulated_annealing, vns
 
 module Heuristic
 
@@ -351,7 +352,7 @@ end
 # enquanto a busca local é usada para melhorar as soluções construídas. O ILS é um método iterativo
 # que, a cada iteração, constrói uma solução gulosa aleatorizada e, em seguida, melhora essa solução
 # por meio de uma busca local. O processo é repetido até que um critério de parada seja satisfeito.
-function ils(data::Data, resultado::Reportproblem)
+function ils(data::Data, resultado::Reportproblem, iter::Int)
     
     # definição das etapas do algoritmo ILS para o TSP
     # 1. Inicialização
@@ -361,8 +362,6 @@ function ils(data::Data, resultado::Reportproblem)
     # 5. Critério de parada
     # 6. Retorno da melhor solução encontrada
 
-
-
     # método que constroe um solução gulosa aleatorizada
     rota = clark_wright(data, false)
 
@@ -370,7 +369,7 @@ function ils(data::Data, resultado::Reportproblem)
     resultado = vnd(data, rota, false)
 
     # método que faz a perturbação da solução
-    resultado = rms(data, resultado, false)
+    resultado = rms(data, iter, false)
 
     nome = "Metaheuristic : ILS"
     custo = resultado.custo
