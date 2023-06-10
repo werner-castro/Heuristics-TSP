@@ -43,7 +43,7 @@ resultado = tsp.model(dados, opt, true)
 
 # ILS
 @time resultado = tsp.clark_wright(dados, false) 
-@time resultado = tsp.ils(dados, resultado, 100)
+@time resultado = tsp.ils(dados, resultado, 100, true)
 
 # VND
 @time resultado = tsp.clark_wright(dados, true) 
@@ -51,4 +51,4 @@ resultado = tsp.model(dados, opt, true)
 
 # SA
 @time resultado = tsp.clark_wright(dados, true) 
-@time resultado = tsp.simulated_annealing(dados, resultado, 100, 100)
+@time resultado = tsp.simulated_annealing(dados, resultado, 100, 100, true)

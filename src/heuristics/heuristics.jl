@@ -70,7 +70,7 @@ function model(data::Dataproblem, opt::Solverparameters, ativo::Bool)
         custo = objective_value(tsp)
         nome = "TSP: MODEL-MTZ"
         resultado = Reportproblem(nome, custo, rota)
-        output(resultado)
+        # output(resultado)
         graph(data, resultado, ativo)
         return resultado
     else
@@ -88,7 +88,7 @@ function random_route(data::Dataproblem, ativo::Bool)
     nome::String  = "random route"
     custo::Float64 = cost(data, rota)
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
+    # output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -109,7 +109,7 @@ function nearest_neighbor(data::Dataproblem, ativo::Bool)
     nome::String = "Heurística : nearest neighbor"
     custo::Float64 = cost(data, rota)
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
+    # output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -143,7 +143,7 @@ function angular(data::Data, ativo::Bool)
     nome  = "Heurística : angular"
     custo = cost(data, rota)
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
+    # output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -188,7 +188,7 @@ function clark_wright(data::Dataproblem, ativo::Bool)
     nome::String   = "Heuristic: clark and wright"
     custo::Float64 = cost(data, rota)
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
+    # output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -232,7 +232,7 @@ function two_opt(data::Dataproblem, resultado::Reportproblem, ativo::Bool)
     nome = "Heuristic : 2-opt"
     custo = cost(data, rota)
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
+    # output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -242,7 +242,7 @@ end
 #==========================================================================================#
 
 # SIMULATED ANNEALING
-function simulated_annealing(data::Data, resultado::Reportproblem, temp::Int, iter::Int)
+function simulated_annealing(data::Data, resultado::Reportproblem, temp::Int, iter::Int, ativo::Bool)
     rota = resultado.rota
     best = resultado
     for i = 1:iter
@@ -261,7 +261,7 @@ function simulated_annealing(data::Data, resultado::Reportproblem, temp::Int, it
     nome = "Metaheuristic : Simulated Annealing"
     custo = cost(data, rota)
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
+    #output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -285,7 +285,7 @@ function vnd(data::Dataproblem, resultado::Reportproblem, ativo::Bool)
     nome = "Metaheuristic : VND"
     custo = cost(data, rota)
     resultado = Reportproblem(nome, custo, rota)
-    output(resultado)
+    #output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -312,6 +312,7 @@ function rms(data::Data, iter::Int, ativo::Bool)
     custo = resultado.custo
     rota  = resultado.rota
     resultado = Reportproblem(nome, custo, rota)
+    #output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -342,6 +343,7 @@ function grasp(data::Data, ativo::Bool, iter::Int, alpha::Float64)
     custo = resultado.custo
     rota = resultado.rota
     resultado = Reportproblem(nome, custo, rota)
+    #output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -375,6 +377,7 @@ function ils(data::Data, resultado::Reportproblem, iter::Int, ativo::Bool)
     custo = resultado.custo
     rota = resultado.rota
     resultado = Reportproblem(nome, custo, rota)
+    #output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
@@ -511,6 +514,7 @@ function genetic_algorithm(data::Data, resultado::Reportproblem, ativo::Bool, po
     custo = resultado.custo
     rota = resultado.rota
     resultado = Reportproblem(nome, custo, rota)
+    #output(resultado)
     graph(data, resultado, ativo)
     return resultado
 end
