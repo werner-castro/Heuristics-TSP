@@ -39,3 +39,9 @@ resultado = tsp.model(dados, opt, true)
 ######################################################################
 
 @time resultado = tsp.rms(dados, 100, true)
+
+@time resultado = tsp.ils(dados, 100, true)
+
+@time resultado = tsp.vns(dados, 100, true)
+
+@time resultado = tsp.simulated_annealing(dados, 100, true)
