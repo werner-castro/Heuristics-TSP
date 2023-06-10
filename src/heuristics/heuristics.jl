@@ -393,7 +393,7 @@ function scatter_search(data::Data, resultado::Reportproblem)
 end
 
 # GENETIC ALGORITHM
-function genetic_algorithm(data::Data, resultado::Reportproblem, ativo::Bool, pop::Int, iter::Int, prob::Float64)
+function genetic_algorithm(data::Data, resultado::Reportproblem, ativo::Bool, pop::Int, prob::Float64)
     
     # definição das etapas do algoritmo genético para o TSP
     # 1. Inicialização da população
@@ -416,8 +416,10 @@ function genetic_algorithm(data::Data, resultado::Reportproblem, ativo::Bool, po
                 rota[i] = sol2.rota[i]
             end
         end
-        rota = vnd(data, rota, false)
-        return rota
+        custo = cost(data, rota)
+        resultado = Reportproblem("Crossover", custo, rota)
+        resultado = vnd(data, resultado, false)
+        return resultado.rota
     end
 
     # método para mutação, com base na probabilidade
@@ -431,7 +433,8 @@ function genetic_algorithm(data::Data, resultado::Reportproblem, ativo::Bool, po
         end
 
         # aplicando o VND
-        rota1 = vnd(data, rota1, false)
+        resultado = Reportproblem("Mutation", cost(data, rota1), rota1)
+        rota1 = vnd(data, resultado, false)
         return rota1
     end
 
@@ -440,6 +443,7 @@ function genetic_algorithm(data::Data, resultado::Reportproblem, ativo::Bool, po
     população = []
     for i = 1:pop
         sol = routedestroy(data)
+        sol = two_opt(data, sol, false)
         push!(população, sol)
     end
 
@@ -485,7 +489,8 @@ function genetic_algorithm(data::Data, resultado::Reportproblem, ativo::Bool, po
 
     # 6. Avaliação da população
     for i = 1:pop
-        filhos[i] = vnd(data, filhos[i], false)
+        resultado = Reportproblem("Genetic Algorithm", cost(data, filhos[i]), filhos[i])
+        filhos[i] = vnd(data, resultado, false)
     end
 
     # 7. Seleção dos sobreviventes

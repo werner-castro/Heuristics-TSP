@@ -44,11 +44,25 @@ resultado = tsp.model(dados, opt, true)
 # ILS
 @time resultado = tsp.clark_wright(dados, false) 
 @time resultado = tsp.ils(dados, resultado, 100, true)
+println("Rota: ", resultado.rota)
+println("Custo: ", resultado.custo)
 
 # VND
-@time resultado = tsp.clark_wright(dados, true) 
+@time resultado = tsp.clark_wright(dados, false) 
 @time resultado = tsp.vnd(dados, resultado, true)
+println("Rota: ", resultado.rota)
+println("Custo: ", resultado.custo)
 
 # SA
-@time resultado = tsp.clark_wright(dados, true) 
-@time resultado = tsp.simulated_annealing(dados, resultado, 100, 100, true)
+@time resultado = tsp.random_route(dados, true)
+# @time resultado = tsp.clark_wright(dados, false) 
+@time resultado = tsp.simulated_annealing(dados, resultado, 120, 150, true)
+println("Rota: ", resultado.rota)
+println("Custo: ", resultado.custo)
+
+# GA
+@time resultado = tsp.random_route(dados, true)
+# @time resultado = tsp.clark_wright(dados, false)
+@time resultado = tsp.genetic_algorithm(dados, resultado, true, 50, 1.0)
+println("Rota: ", resultado.rota)
+println("Custo: ", resultado.custo)
